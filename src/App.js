@@ -1,7 +1,12 @@
-import React from 'react'
+import React from 'react';
+import XpBar from './components/XpBar';
 
-const App = props => (
-  <div>Hello World</div>
-)
+const App = () => {
+  return (
+    <div>
+      <XpBar/>
+    </div>
+  )
+}
 
 export default App
