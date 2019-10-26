@@ -1,4 +1,4 @@
-import { rollDice } from './helpers'
+import { rollDice } from '../helpers'
 
 class EnemyState {
   constructor(playerLvl) {

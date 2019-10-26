@@ -7,7 +7,7 @@ class Character {
 }
 
 // BASE PLAYER CLASS, CHILD OF CHAR CLASS
-import initialPlayerState from './player'
+import initialPlayerState from '../player/initialState'
 
 class Player extends Character {
   constructor(name) {
