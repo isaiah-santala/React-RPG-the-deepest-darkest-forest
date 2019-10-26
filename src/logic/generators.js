@@ -15,15 +15,11 @@ class EnemyState {
 }
 
 
-import { potentialEnemyNames } from './enemies'
+import { potentialEnemyDescriptions } from './enemies'
 
 const generateEnemyDescription = () => {
-  const names = Object.keys(potentialEnemyNames)
-  const idx = rollDice(names.length)
-  return {
-    name: names[idx],
-    saying: potentialEnemyNames[names[idx]]
-  }
+  const idx = rollDice(potentialEnemyDescriptions.length)
+  return potentialEnemyDescriptions[idx]
 }
 
 
