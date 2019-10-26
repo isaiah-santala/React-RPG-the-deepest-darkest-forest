@@ -1,9 +1,12 @@
 import React from 'react'
 
-const Player = props => (
-  <div className="character-box">
-    bob
-  </div>
-)
+const Player = () => {
+  
+  return(
+    <div className="character-box">
+      
+    </div>
+  )
+}
 
 export default Player
