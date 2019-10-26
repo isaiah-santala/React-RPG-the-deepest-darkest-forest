@@ -1,0 +1,36 @@
+{
+  "name": "react-rpg-the-deepest-darkest-forest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./server.js",
+    "build": "webpack --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zaiah11/React-RPG-the-deepest-darkest-forest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zaiah11/React-RPG-the-deepest-darkest-forest/issues"
+  },
+  "homepage": "https://github.com/Zaiah11/React-RPG-the-deepest-darkest-forest#readme",
+  "dependencies": {
+    "@babel/preset-react": "^7.6.3",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.4",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "webpack": "^4.41.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "webpac": "^1.0.1",
+    "webpack-cli": "^3.3.9"
+  }
+}
