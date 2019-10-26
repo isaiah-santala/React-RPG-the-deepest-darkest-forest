@@ -1,17 +1,17 @@
 // BASE CHARACTER CLASS FOR PLAYER AND ENEMY
 class Character {
-  constructor(name, initialState) {
-    this.name = name
+  constructor(initialState, name) {
+    if (name) this.name = name
     Object.assign(this, initialState)
   }
 }
 
 // BASE PLAYER CLASS, CHILD OF CHAR CLASS
-import initialPlayerState from './logic'
+import initialPlayerState from './player'
 
 class Player extends Character {
   constructor(name) {
-    super(name, initialPlayerState)
+    super(initialPlayerState, name)
   }
 
   nextLevel() {
@@ -20,8 +20,9 @@ class Player extends Character {
 }
 
 // BASE ENEMY CLASS, CHILD OF CHAR CLASS
+
 class Enemy extends Character {
-  constructor() {
+  constructor(initialEnemyState) {
     super(initialEnemyState)
   }
 }
