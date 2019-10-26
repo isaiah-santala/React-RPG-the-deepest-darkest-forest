@@ -1,11 +1,7 @@
 import React from 'react'
 
-const Filler = () => {
-    return (
-        <div className='filler'>
-            
-        </div>
-    )
-}
+const Filler = (props) => {
+    return <div className="filler" style={{ width: `${props.percentage}%` }} />
+  }
 
 export default Filler

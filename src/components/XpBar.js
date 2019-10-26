@@ -1,15 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Filler from './Filler'
 
-const XpBar = () => {
-
-    const [ percentage, setPercentage ] = useState(0)
-
+const XpBar = (props) => {
     return (
-        <div className='xpBar'>
-           <Filler />
+        <div className="progress-bar">
+          <Filler percentage={props.percentage} />
         </div>
-    )
-}
+      )
+  }
 
 export default XpBar
