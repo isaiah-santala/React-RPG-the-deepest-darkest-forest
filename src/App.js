@@ -1,16 +1,13 @@
 import React from 'react';
-import XpBar from './components/XpBar';
-import './styles.css'
-import HomeView from './HomeView/HomeView'
+import XpBar from './components/modules/XpBar';
+import HomeView from './components/HomeView/HomeView'
 
 const App = () => {
   return (
     <div>
-      <XpBar/>
       <HomeView/>
     </div>
   )
 }
-
 
 export default App
