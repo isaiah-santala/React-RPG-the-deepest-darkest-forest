@@ -1,10 +1,11 @@
 import React from 'react';
 import HomeView from './components/HomeView/HomeView'
-import { generateNewEnemy } from './logic/generators/generators'
-
+import { generatePlayer, generateNewEnemy } from './logic/generators/generators'
 
 const App = () => {
-  console.log(generateNewEnemy(2))
+  const player = generatePlayer('Bob')
+  const enemy = generateNewEnemy(2)
+  console.log(player, enemy)
   return (
     <div>
       <HomeView/>
