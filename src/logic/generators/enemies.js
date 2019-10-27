@@ -33,7 +33,6 @@ const potentialEnemyDescriptions = [
   }
 ]
 
-
 // CHANCE PERCENTAGES OF ENEMY LEVEL RELATED TO PLAYER LEVEL UPON GENERATION
 const enemyLvlChances = {
   isLower: 3,

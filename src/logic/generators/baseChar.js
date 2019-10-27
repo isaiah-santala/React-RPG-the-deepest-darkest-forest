@@ -4,11 +4,20 @@ class Character {
   constructor(initialState) {
     Object.assign(this, initialState)
   }
+
+  updateHealth(type, amount) {
+    switch(type) {
+      case 'HEAL' :
+        return this.hp = (this.hp + amount) > this.maxHp ? 
+          this.maxHp : this.hp + amount
+      case 'DAMAGE' :
+        return this.hp = (this.hp - amount) < 0 ?
+          0 : this.hp - amount
+    }
+  }
 }
 
 // BASE PLAYER CLASS, CHILD OF CHAR CLASS
-
-import initialPlayerState from '../player/initialState'
 
 class Player extends Character {
   constructor(initialPlayerState, name) {
