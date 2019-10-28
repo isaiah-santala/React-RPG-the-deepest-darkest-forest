@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 export default function charactersInfo(props) {
-    var pok = props.characters;
-    var hp = 0;
+    let pok = props.characters;
+    let hp = 0;
     if(pok.getHp() > 0)
-        var hp = pok.getHp() / pok.getMaxHp();
+        let hp = pok.getHp() / pok.getMaxHp();
 
     return (
         <div className="charactersInfo">

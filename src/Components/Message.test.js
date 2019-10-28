@@ -1,41 +1,40 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import { shallow, configure } from "enzyme";
 import Message from "./Message";
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from "enzyme-adapter-react-16";
 
 configure({ adapter: new Adapter() });
 
-describe("Message component", function () {
-    var onClick = () => {};
-    var message = null;
-    var instance = () => message().instance();
-    const text = "dupa";
+describe("Message component", function() {
+  let onClick = () => {};
+  let message = null;
+  let instance = () => message().instance();
+  const text = "dupa";
 
-    beforeEach(function() {
-        message = shallow(<Message message={text} onClick={self.onClick} />)
-    })
+  beforeEach(function() {
+    message = shallow(<Message message={text} onClick={self.onClick} />);
+  });
 
-    it('renders as div', function () {
-    expect(
-        message.is("div")
-    ).toBe(true)
+  it("renders as div", function() {
+    expect(message.is("div")).toBe(true);
   });
 
   it("Has correct message", function() {
-      expect(
-          message.text()
-      ).toBe(text);
+    expect(message.text()).toBe(text);
   });
 
-  if("Handles onClick", function() {
-      var clicked = false;
-      onClick = () => { clicked = true;};
+  if (
+    ("Handles onClick",
+    function() {
+      let clicked = false;
+      onClick = () => {
+        clicked = true;
+      };
 
       message.simulate("click");
 
       expect(clicked).toBe(true);
-  });
-
-  
-})
+    })
+  );
+});

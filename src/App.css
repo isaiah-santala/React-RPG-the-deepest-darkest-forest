@@ -1,45 +1,41 @@
 .charactersInfo {
-  display:inline-block;
+  display: inline-block;
   margin: 1rem;
 
   border: 1px gray solid;
   padding: 0.5rem 1rem;
 }
 
-.charactersInfo .name
-{
+.charactersInfo .name {
   font-size: large;
 }
 
-.charactersInfo .level
-{
+.charactersInfo .level {
   text-align: center;
 }
 
-
-
 .charactersInfo .hitPoints {
-  width:10vw;
+  width: 10vw;
   min-height: 1rem;
   display: grid;
   border: 1px solid black;
   border-radius: 5px;
-
- 
 }
 
 .hitPoints .remaining {
-  background:green;
-  width:100%;
-  height:100%;
+  background: green;
+  width: 100%;
+  height: 100%;
 }
 
-html, body, #root
-{
-  height:100%;
-  min-height:100%;
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 100%;
 }
-body:before, body:after {
+body:before,
+body:after {
   content: "";
   position: fixed;
   background: gray;
@@ -55,66 +51,55 @@ body:after {
 }
 body {
   border-left: 10px solid gray;
-  border-right: 10px solid gray;  
+  border-right: 10px solid gray;
 }
 
-.battleScreen
-{
-  display:flex;
+.battleScreen {
+  display: flex;
   flex-direction: column;
 
-  height:100%
+  height: 100%;
 }
 
-.battleScreen>.top
-{
+.battleScreen > .top {
   flex-grow: 70;
   position: relative;
 }
 
-.battleScreen>.bottom
-{
+.battleScreen > .bottom {
   border-top: 1px solid gray;
-  flex-grow: 30
+  flex-grow: 30;
 }
 
-.battleScreen .top .charactersInfo:last-child
-{
-  position:absolute;
-  bottom:0;
-  right:0;
+.battleScreen .top .charactersInfo:last-child {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
-.battleScreen>.bottom
-{
-  display:grid;
-  grid-template-columns: 55% 5% 35%
+.battleScreen > .bottom {
+  display: grid;
+  grid-template-columns: 55% 5% 35%;
 }
 
-.battleScreen>.bottom>.attacks
-{
-  display:grid;
+.battleScreen > .bottom > .attacks {
+  display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
 }
 
-.battleScreen>.bottom>.character
-{
-  display:grid;
+.battleScreen > .bottom > .character {
+  display: grid;
   grid-template-columns: auto;
 }
 
-.battleScreen>.bottom>.items
-{
-  display:grid;
+.battleScreen > .bottom > .items {
+  display: grid;
   grid-template-columns: auto;
 }
 
-
-.battleScreen>.bottom>.actions
-{
-  display:grid;
+.battleScreen > .bottom > .actions {
+  display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
 }
-

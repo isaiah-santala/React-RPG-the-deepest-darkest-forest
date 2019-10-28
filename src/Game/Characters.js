@@ -3,7 +3,7 @@ class characters {
     this.name = name;
     this.level = level;
     this.attacks = attacks;
-    
+
     this.hp = this.getMaxHp();
   }
 
