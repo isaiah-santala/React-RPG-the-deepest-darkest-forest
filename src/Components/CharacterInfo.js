@@ -4,7 +4,7 @@ export default function charactersInfo(props) {
     let pok = props.characters;
     let hp = 0;
     if(pok.getHp() > 0)
-        let hp = pok.getHp() / pok.getMaxHp();
+        hp = pok.getHp() / pok.getMaxHp();
 
     return (
         <div className="charactersInfo">
