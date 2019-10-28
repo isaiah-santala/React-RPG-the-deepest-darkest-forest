@@ -9,7 +9,7 @@ const allItems = {
   ),
   wand: new Item(
     'wand',
-    '...Did this stick just say something?, you feel a powerful energy emanating from this little piece of wood',
+    '...Did this stick just say something?, you feel a powerful energy emanating from the twig',
     '(use in combat to cast a spell)',
     'weapon'
   ),
