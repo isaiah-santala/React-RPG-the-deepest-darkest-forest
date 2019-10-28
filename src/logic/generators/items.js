@@ -1,5 +1,5 @@
 class Item {
-  constructor(name, description, type) {
+  constructor(name, description, effect, type) {
     this.name = name
     this.description = description
     this.effect = effect

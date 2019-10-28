@@ -5,6 +5,7 @@ class EnemyState {
     this.desc = generateEnemyDescription()
     this.lvl = generateEnemyLevel(playerLvl)
     this.hp = generateEnemyHp(this.lvl)
+    this.loot = generateEnemyLoot()
   }
 }
 
@@ -36,5 +37,12 @@ const generateEnemyHp = (lvl) => {
   return enemyBaseHealth + incrementor
 }
 
+import { allItems } from '../items/all'
+
+const generateEnemyLoot = () => {
+  const items = Object.keys(allItems)
+  const idx = rollDice(items.length)
+  return allItems[items[idx]]
+}
 
 export { EnemyState } 
