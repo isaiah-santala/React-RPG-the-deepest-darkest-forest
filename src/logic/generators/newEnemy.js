@@ -10,7 +10,7 @@ class EnemyState {
 }
 
 
-import { potentialEnemyDescriptions } from './enemies'
+import { potentialEnemyDescriptions } from '../enemies/enemies'
 
 const generateEnemyDescription = () => {
   const idx = rollDice(potentialEnemyDescriptions.length)
@@ -18,7 +18,7 @@ const generateEnemyDescription = () => {
 }
 
 
-import { enemyLvlChances } from './enemies'
+import { enemyLvlChances } from '../enemies/enemies'
 
 const generateEnemyLevel = (playerLvl) => {
   const { isLower, isSame } = enemyLvlChances
@@ -29,13 +29,14 @@ const generateEnemyLevel = (playerLvl) => {
 }
 
 
-import { enemyBaseHealth } from './enemies'
+import { enemyBaseHealth } from '../enemies/enemies'
 
 const generateEnemyHp = (lvl) => {
   let incrementor = lvl * 5
   incrementor = Math.round(incrementor / 2.5)
   return enemyBaseHealth + incrementor
 }
+
 
 import { allItems } from '../items/all'
 

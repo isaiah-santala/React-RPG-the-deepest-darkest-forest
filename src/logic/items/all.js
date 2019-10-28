@@ -15,7 +15,7 @@ const allItems = {
   ),
   book: new Item(
     'book',
-    'What unknown knowledge lies within the pages of these leather binding?, only one way to find out',
+    'What unknown knowledge lies within the pages of these leather bindings?, only one way to find out',
     '(will grant additional action points)',
     'education'
   ),
