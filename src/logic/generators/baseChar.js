@@ -15,9 +15,18 @@ class Character {
           0 : this.hp - amount
     }
   }
+
+  // updateLoot(type, loot) {
+  //   switch(type) {
+  //     case 'ADD' :
+  //       this.loot[loot.type] = loot.item
+  //     case 'REMOVE' :
+        
+  //   }
+  // }
 }
 
-// BASE PLAYER CLASS, CHILD OF CHAR CLASS
+// BASE PLAYER CLASS, CHILD OF CHARACTER CLASS
 
 class Player extends Character {
   constructor(initialPlayerState, name) {
