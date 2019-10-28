@@ -2,7 +2,6 @@ class Attack {
   affect(characters, othercharacters) {
     return;
   }
-
   getDescription() {
     return this.description;
   }

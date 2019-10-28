@@ -12,8 +12,8 @@ pallet:
   yellowgreen
   coral
   white
-  black
-*/
+  black */
+
 
 .character-box {
   width: 15rem;
@@ -23,3 +23,5 @@ pallet:
 	border-width: 0.5rem;
 	border-color: coral;
 }
+
+
