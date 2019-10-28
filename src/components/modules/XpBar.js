@@ -1,11 +1,12 @@
 import React from 'react'
+import Filler from './Filler'
 
-const XpBar = () => {
+const XpBar = (props) => {
     return (
-        <div>
-           XpBar  
+        <div className="progress-bar">
+          <Filler percentage={props.percentage} />
         </div>
-    )
-}
+      )
+  }
 
 export default XpBar

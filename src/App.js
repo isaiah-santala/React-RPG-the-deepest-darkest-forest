@@ -1,3 +1,4 @@
+
 import React from 'react';
 import HomeView from './components/HomeView/HomeView'
 import { generatePlayer, generateNewEnemy } from './logic/generators/generators'
