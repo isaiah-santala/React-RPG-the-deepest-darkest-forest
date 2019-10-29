@@ -27,11 +27,13 @@ class Character {
 }
 
 // BASE PLAYER CLASS, CHILD OF CHARACTER CLASS
+import { Loot } from './loot'
 
 class Player extends Character {
   constructor(initialPlayerState, name) {
     super(initialPlayerState)
     this.name = name
+    this.loot = new Loot()
   }
 
   nextLevel() {

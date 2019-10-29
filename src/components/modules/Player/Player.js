@@ -4,6 +4,7 @@ import { generatePlayer } from '../../../logic/generators/generators'
 
 const Player = ({ player }) => {
   player = generatePlayer('Bob Trufant')
+  console.log(player)
   
   return(
     <div className="character-box">
@@ -30,8 +31,8 @@ const Player = ({ player }) => {
 
       <div className="character-row">
         <div className="character-loot character-box-item">
-          {player.loot.map((e, i) =>
-            <div>{e.name}</div>
+          {Object.keys(player.loot).map((e, i) =>
+            <div key={i}>{player.loot[e].name}</div>
           )}
         </div>
       </div>
