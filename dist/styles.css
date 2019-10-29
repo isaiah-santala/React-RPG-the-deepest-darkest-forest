@@ -58,3 +58,13 @@ pallet:
   height: 6rem;
   overflow: scroll;
 }
+
+.loot-item {
+  margin: 0.5rem;
+  padding: 0.2rem;
+  background-color: navajowhite;
+  width: 4rem;
+  text-align: center;
+  border-radius: 0.2rem;
+  box-shadow: 0.05rem 0.05rem 0.05rem black;;
+}
