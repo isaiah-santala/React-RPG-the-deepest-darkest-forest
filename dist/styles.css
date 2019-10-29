@@ -21,5 +21,40 @@ pallet:
   background-color: yellowgreen;
   border-style: groove;
 	border-width: 0.5rem;
-	border-color: coral;
+  border-color: coral;
+}
+
+.character-box-item {
+  background-color: forestgreen;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 0.75rem;
+  padding-left: 0.2rem;
+  box-shadow: inset 0.05rem 0.05rem 0.05rem black;
+}
+
+.character-row {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.character-headshot {
+  width: 4rem;
+  height: 4rem;
+}
+
+.character-name {
+  margin-top: 0.5rem;
+  width: 4rem;
+}
+
+.character-stats {
+  width: 8rem;
+  height: 6rem;
+}
+
+.character-loot {
+  width: 13rem;
+  height: 6rem;
+  overflow: scroll;
 }
