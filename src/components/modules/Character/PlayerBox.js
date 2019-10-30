@@ -1,12 +1,12 @@
 import React from 'react'
-import Info from '../Character/Info'
-import Loot from '../Character/Loot'
+import Info from './Info'
+import Loot from './Loot'
 
-const Player = ({ player }) => (
+const PlayerBox = ({ player }) => (
     <div className="character-box">
       <Info char={player}/>
       <Loot char={player}/>
     </div>
 )
 
-export default Player
+export default PlayerBox

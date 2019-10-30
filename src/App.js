@@ -1,15 +1,14 @@
 
 import React, { Component } from 'react';
-import HomeView from './components/HomeView/HomeView'
 import { generatePlayer } from './logic/generators/generators'
-import CombatView from './components/CombatView/CombatView';
+import Game from './components/Game';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       player: generatePlayer('Bob', 'I am Bob'),
-      view: 'COMBAT'
+      view: 'GAME'
     }
   }
 
@@ -19,29 +18,19 @@ class App extends Component {
     })
   }
 
-  updateView(view) {
-    this.setState({ view })
-  }
-
   render() {
     const  { view, player, enemy } = this.state
 
     return (
       <div>
-        {view === 'LOGIN' && 
+        {view === 'LOGIN' &&
           <Login
             updateView={this.updateView}
-        />}
-        {view === 'HOME' && 
-          <HomeView 
-            player={player}
-            updateView={this.updateView}
-        />}
-        {view === 'COMBAT' && 
-          <CombatView
-            player={player}
-            updateView={this.updateView}
-        />}
+          />}
+        {view === 'GAME' && 
+          <Game 
+            player={player} 
+          />}
       </div>
     )
   }

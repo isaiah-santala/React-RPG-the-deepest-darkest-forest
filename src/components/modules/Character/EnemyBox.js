@@ -1,7 +1,7 @@
 import React from 'react'
-import Info from '../Character/Info'
+import Info from './Info'
 
-const Enemy = ({ enemy }) => (
+const EnemyBox = ({ enemy }) => (
     <div className="character-box">
 
       <Info char={enemy} />
@@ -15,4 +15,4 @@ const Enemy = ({ enemy }) => (
     </div>
 )
 
-export default Enemy
+export default EnemyBox

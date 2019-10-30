@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Enemy from '../modules/Enemy/Enemy'
-import Player from '../modules/Player/Player'
-import CombatActions from '../modules/Actions/CombatActions'
-import { generateNewEnemy } from '../../logic/generators/generators'
+import EnemyBox from './modules/Character/EnemyBox'
+import PlayerBox from './modules/Character/PlayerBox'
+import CombatActions from './modules/Actions/CombatActions'
+import { generateNewEnemy } from '../logic/generators/generators'
 
 
 class CombatView extends Component {
@@ -27,9 +27,9 @@ class CombatView extends Component {
     return (
       <div className="combat-view">
         <div className="row">
-          <Player player={this.props.player}/>
+          <PlayerBox player={this.props.player}/>
           <div className="vs">VS</div>
-          <Enemy enemy={this.state.enemy}/>
+          <EnemyBox enemy={this.state.enemy}/>
         </div>
 
         <div className="actions">
