@@ -33,7 +33,7 @@ class CombatView extends Component {
         </div>
 
         <div className="actions">
-          <CombatActions/>
+          <CombatActions handleAction={this.props.handleAction}/>
         </div>
       </div>
     )

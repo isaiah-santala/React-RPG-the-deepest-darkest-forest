@@ -4,8 +4,10 @@ import { initialPlayerState } from '../player/initialState'
 import { allItems } from '../items/all'
 const { potion } = allItems
 
-const generatePlayer = (name, saying) => {
-  const player = new Player(initialPlayerState, name, saying)
+const nullPlayer = { name: null, saying: null, img: { type: null, name: null } }
+
+const generatePlayer = (playerInfo = nullPlayer) => {
+  const player = new Player(initialPlayerState, playerInfo)
   player.loot.addItem(potion)
   return player
 }

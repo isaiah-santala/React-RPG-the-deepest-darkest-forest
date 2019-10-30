@@ -4,7 +4,7 @@ const potentialEnemyDescriptions = [
     saying: "Hisssss..",
     img: {
       type: 'enemy',
-      imgName: 'imp'
+      name: 'imp'
     }
   },
   { 
@@ -12,7 +12,7 @@ const potentialEnemyDescriptions = [
     saying: "Fee Fi Fo Fum, I'm about to turn you into lunch.",
     img: {
       type: 'enemy',
-      imgName: 'giant'
+      name: 'giant'
     }
   },
   {
@@ -20,7 +20,7 @@ const potentialEnemyDescriptions = [
     saying: "Shreik.. gulp.. gurgle ",
     img: {
       type: 'enemy',
-      imgName: 'caveTroll'
+      name: 'caveTroll'
     }
   },
   {
@@ -28,7 +28,7 @@ const potentialEnemyDescriptions = [
     saying: "Mua ha ha, It is I! The stranger who is also mysterious",
     img: {
       type: 'enemy',
-      imgName: 'stranger'
+      name: 'stranger'
     }
   },
   {
@@ -36,7 +36,7 @@ const potentialEnemyDescriptions = [
     saying: "You think you can just walk into my... my.. my, my gardend unanounced?!",
     img: {
       type: 'enemy',
-      imgName: 'garden'
+      name: 'garden'
     }
   },
   {
@@ -44,7 +44,7 @@ const potentialEnemyDescriptions = [
     saying: "I grow weary of your kind human.",
     img: {
       type: 'enemy',
-      imgName: 'ent'
+      name: 'ent'
     }
   },
   {
@@ -52,7 +52,7 @@ const potentialEnemyDescriptions = [
     saying: "oooh ma back..",
     img: {
       type: 'enemy',
-      imgName: 'old'
+      name: 'old'
     }
   },
   {
@@ -60,7 +60,7 @@ const potentialEnemyDescriptions = [
     saying: "I am Bart and I am great! <br>Prepare to meet your destiny.",
     img: {
       type: 'enemy',
-      imgName: 'bart'
+      name: 'bart'
     }
   }
 ]

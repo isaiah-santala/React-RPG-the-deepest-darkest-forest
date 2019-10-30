@@ -42,15 +42,12 @@ import { Loot } from './loot'
 import { rollDice } from '../helpers'
 
 class Player extends Character {
-  constructor(state, name, saying) {
+  constructor(state, { name, saying, img }) {
     super(state)
     this.desc = {
       name, 
       saying, 
-      img: {
-        type: 'player',
-        imgName: 'male1'
-      } 
+      img
     }
     this.loot = new Loot()
   }

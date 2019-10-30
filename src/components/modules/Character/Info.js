@@ -8,7 +8,7 @@ const Info = ({ char }) => {
       <div className="character-info">
         <img
           className="character-headshot"
-          src={`img/${char.desc.img.type}/${char.desc.img.imgName}`}
+          src={`img/${char.desc.img.type}/${char.desc.img.name}`}
         ></img>
         <div className="character-name character-box-item">
           {char.desc.name}

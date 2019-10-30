@@ -7,19 +7,25 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      player: generatePlayer('Bob', 'I am Bob'),
-      view: 'GAME'
+      view: 'GAME',
+      player: {
+        name: 'Bob Trufant',
+        saying: 'I am Bob!',
+        img: {
+          name: 'male1',
+          type: 'player'
+        }
+      }
     }
+    this.handleLogin = this.handleLogin.bind(this)
   }
 
-  generatePlayer(name, saying) {
-    this.setState({
-      player: generatePlayer(name, saying)
-    })
+  handleLogin() {
+
   }
 
   render() {
-    const  { view, player, enemy } = this.state
+    const  { view, player } = this.state
 
     return (
       <div>
@@ -29,7 +35,7 @@ class App extends Component {
           />}
         {view === 'GAME' && 
           <Game 
-            player={player} 
+            player={player}
           />}
       </div>
     )

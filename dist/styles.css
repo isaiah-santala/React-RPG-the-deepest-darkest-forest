@@ -153,3 +153,39 @@ button:active {
   border-color: black;
   border-width: 0.05rem;
 }
+
+.blackout {
+  display: flex; /* Hidden by default */
+  justify-content: center;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+}
+
+.popup {
+  padding: 0.5rem;
+  width: 20rem;
+  height: 10rem;
+  background-color: darkgreen;
+  color: white;
+  border-style: groove;
+	border-width: 0.5rem;
+  border-color: coral;
+}
+
+.popup-top-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.popup-msg {
+  margin-top: 1rem;
+  text-align: center;
+}

@@ -1,22 +1,56 @@
 import React, { Component } from 'react'
+import Popup from './modules/Popup'
 import HomeView from './HomeView'
 import CombatView from './CombatView'
+import { generatePlayer } from '../logic/generators/generators'
 
 class Game extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      view: 'COMBAT'
+      player: generatePlayer(),
+      view: 'COMBAT',
+      popup: false,
+      msg: null
     }
+    this.attack = this.attack.bind(this)
+    this.handleAction = this.handleAction.bind(this)
+    this.updateView = this.updateView.bind(this)
+    this.togglePopup = this.togglePopup.bind(this)
+  }
+
+  componentDidMount() {
+    this.generatePlayer(this.props.player)
+  }
+
+  generatePlayer(player) {
+    this.setState({
+      player: generatePlayer(player)
+    })
   }
 
   updateView(view) {
     this.setState({ view })
   }
 
+  handleAction(type, action) {
+    switch(type) {
+      case 'ATTACK' :
+        return this.attack()
+    }
+  }
+
+  attack() {
+    this.togglePopup('attack!')
+  }
+
+  togglePopup(msg = null) {
+    const popup = !this.state.popup
+    this.setState({ popup, msg })
+  }
+
   render(props) {
-    const { view } = this.state
-    const { player } = this.props
+    const { view, player, popup, msg } = this.state
 
     return (
       <div>
@@ -24,11 +58,18 @@ class Game extends Component {
           <HomeView
             player={player}
             updateView={this.updateView}
+            handleAction={this.handleAction}
           />}
         {view === 'COMBAT' &&
           <CombatView
             player={player}
             updateView={this.updateView}
+            handleAction={this.handleAction}
+          />}
+        {popup &&
+          <Popup
+            msg={msg}
+            togglePopup={this.togglePopup}
           />}
       </div>
     )
