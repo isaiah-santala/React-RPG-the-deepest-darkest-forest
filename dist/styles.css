@@ -39,8 +39,9 @@ pallet:
 }
 
 .character-headshot {
-  width: 4rem;
-  height: 4rem;
+  border-style: solid;
+  border-width: 0.02rem;
+  box-shadow: 0.05rem 0.05rem 0.05rem black;;
 }
 
 .character-name {
