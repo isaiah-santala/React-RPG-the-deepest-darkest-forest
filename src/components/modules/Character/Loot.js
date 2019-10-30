@@ -10,11 +10,11 @@ const Loot = ({ char }) => {
       <div className="character-loot character-box-item">
 
         {Object.keys(char.loot).map((e, i) =>
-          <div
+          <button
             key={i}
-            className="loot-item"
+            className="button loot-item"
             onClick={() => describeItem(char.loot[e].description)}
-          >{char.loot[e].name}</div>
+          >{char.loot[e].name}</button>
         )}
 
       </div>
