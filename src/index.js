@@ -5,10 +5,6 @@ import ReactDOM from "react-dom";
 
 // ReactDOM.render(<App />, document.getElementById('App'))
 
-// import Player from './components/modules/Player/Player' 
+import CombatView from './components/CombatView/CombatView'
 
-// ReactDOM.render(<Player />, document.getElementById('App'))
-
-import Enemy from './components/modules/Enemy/Enemy'
-
-ReactDOM.render(<Enemy />, document.getElementById('App'))
+ReactDOM.render(<CombatView />, document.getElementById('App'))

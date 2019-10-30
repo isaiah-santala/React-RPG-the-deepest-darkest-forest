@@ -1,16 +1,18 @@
 import React from 'react'
-import { generateNewEnemy } from '../../../logic/generators/generators'
 import Info from '../Character/Info'
 
-const Enemy = ({ enemy }) => {
-  enemy = generateNewEnemy(1)
-  console.log(enemy)
-
-  return (
+const Enemy = ({ enemy }) => (
     <div className="character-box">
+
       <Info char={enemy} />
+
+      <div className="character-row">
+        <div className="character-saying character-box-item">
+          {enemy.desc.saying}
+        </div>
+      </div>
+      
     </div>
-  )
-}
+)
 
 export default Enemy

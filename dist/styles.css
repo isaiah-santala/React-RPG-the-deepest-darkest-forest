@@ -47,17 +47,28 @@ pallet:
 .character-name {
   margin-top: 0.5rem;
   width: 4rem;
+  padding: 0.1rem;
+  padding-left: 0.4rem;
+  padding-right: 0rem;
+  color: white;
 }
 
 .character-stats {
+  padding-top: 0.2rem;
   width: 8rem;
-  height: 6rem;
+  height: 5rem;
 }
 
 .character-loot {
   width: 13rem;
   height: 6rem;
   overflow: scroll;
+}
+
+.character-saying {
+  width: 13rem;
+  padding: 0.3rem;
+  background-color: navajowhite;
 }
 
 .loot-item {
@@ -68,4 +79,20 @@ pallet:
   text-align: center;
   border-radius: 0.2rem;
   box-shadow: 0.05rem 0.05rem 0.05rem black;;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
 }
