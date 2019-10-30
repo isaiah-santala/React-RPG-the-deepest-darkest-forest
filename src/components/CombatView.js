@@ -23,11 +23,14 @@ class CombatView extends Component {
     })
   }
 
-  render(props) {
+  render() {
     return (
       <div className="combat-view">
         <div className="row">
-          <PlayerBox player={this.props.player}/>
+          <PlayerBox 
+            player={this.props.player}
+            handleAction={this.props.handleAction}
+          />
           <div className="vs">VS</div>
           <EnemyBox enemy={this.state.enemy}/>
         </div>

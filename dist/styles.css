@@ -48,7 +48,7 @@ button {
 }
 
 button:hover {
-    background: sandybrown;
+    background: rgb(204, 159, 92);
 }
 
 button:focus {
@@ -57,13 +57,13 @@ button:focus {
 
 .action-button:focus {
   box-shadow: inset 0.05rem 0.05rem 0.05rem black;
-  background: sandybrown;
+  background: rgb(204, 159, 92);
   border-style: inset;
 }
 
 button:active {
     transform: scale(0.99);
-    background: sandybrown;
+    background: rgb(204, 159, 92);
 }
 
 .character-box {
@@ -97,7 +97,7 @@ button:active {
 
 .character-name {
   margin-top: 0.5rem;
-  width: 4rem;
+  width: 4.3rem;
   padding: 0.1rem;
   padding-left: 0.4rem;
   padding-right: 0rem;
@@ -173,8 +173,7 @@ button:active {
   padding: 0.5rem;
   width: 20rem;
   height: 10rem;
-  background-color: darkgreen;
-  color: white;
+  background-color: sandybrown;
   border-style: groove;
 	border-width: 0.5rem;
   border-color: coral;

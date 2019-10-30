@@ -57,7 +57,7 @@ const potentialEnemyDescriptions = [
   },
   {
     name: "Bart the Great",
-    saying: "I am Bart and I am great! <br>Prepare to meet your destiny.",
+    saying: "I am Bart and I am great! Prepare to meet your destiny.",
     img: {
       type: 'enemy',
       name: 'bart'

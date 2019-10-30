@@ -37,11 +37,13 @@ class Game extends Component {
     switch(type) {
       case 'ATTACK' :
         return this.attack()
+      case 'DESCRIBE_ITEM' :
+        return this.togglePopup(action.msg)
     }
   }
 
   attack() {
-    this.togglePopup('attack!')
+    this.togglePopup('you attack your foe!')
   }
 
   togglePopup(msg = null) {

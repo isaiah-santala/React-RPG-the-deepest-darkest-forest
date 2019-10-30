@@ -1,20 +1,26 @@
 import React from 'react'
 
-const Loot = ({ char }) => {
+const Loot = ({ char, handleAction }) => {
 
-  const describeItem = (description) => alert(description)
+  const { loot } = char
+
+  const describeItem = (msg) => 
+    handleAction('DESCRIBE_ITEM', { msg: msg })
+
 
   return (
     <div className="character-row">
 
       <div className="character-loot character-box-item">
 
-        {Object.keys(char.loot).map((e, i) =>
+        {Object.keys(loot).map((e, i) =>
           <button
             key={i}
             className="button loot-item"
-            onClick={() => describeItem(char.loot[e].description)}
-          >{char.loot[e].name}</button>
+            onClick={() => describeItem(
+              loot[e].description
+            )}
+          >{loot[e].name}</button>
         )}
 
       </div>

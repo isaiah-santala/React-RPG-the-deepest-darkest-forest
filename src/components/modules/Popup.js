@@ -1,7 +1,10 @@
 import React from 'react'
 
 const Popup = ({ msg, togglePopup }) => (
-  <div className="blackout">
+  <div 
+    className="blackout"
+    onClick={() => togglePopup()}
+  >
     <div className="popup">
       <div className="popup-top-row">
         <button
