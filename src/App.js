@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import HomeView from './components/HomeView/HomeView'
-import { generatePlayer, generateNewEnemy } from './logic/generators/generators'
+import { generatePlayer } from './logic/generators/generators'
 import CombatView from './components/CombatView/CombatView';
 
 class App extends Component {
@@ -9,7 +9,6 @@ class App extends Component {
     super(props)
     this.state = {
       player: generatePlayer('Bob', 'I am Bob'),
-      enemy: generateNewEnemy(0),
       view: 'COMBAT'
     }
   }
@@ -17,12 +16,6 @@ class App extends Component {
   generatePlayer(name, saying) {
     this.setState({
       player: generatePlayer(name, saying)
-    })
-  }
-
-  generateNewEnemy(playerLvl) {
-    this.setState({
-      enemy: generateNewEnemy(playerLvl)
     })
   }
 
@@ -37,15 +30,17 @@ class App extends Component {
       <div>
         {view === 'LOGIN' && 
           <Login
+            updateView={this.updateView}
         />}
         {view === 'HOME' && 
           <HomeView 
             player={player}
+            updateView={this.updateView}
         />}
         {view === 'COMBAT' && 
           <CombatView
             player={player}
-            enemy={enemy}
+            updateView={this.updateView}
         />}
       </div>
     )
