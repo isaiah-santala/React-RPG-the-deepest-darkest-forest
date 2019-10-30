@@ -22,7 +22,14 @@ import { Loot } from './loot'
 class Player extends Character {
   constructor(state, name, saying) {
     super(state)
-    this.desc = { name, saying }
+    this.desc = {
+      name, 
+      saying, 
+      img: {
+        type: 'player',
+        imgName: 'male1'
+      } 
+    }
     this.loot = new Loot()
   }
 

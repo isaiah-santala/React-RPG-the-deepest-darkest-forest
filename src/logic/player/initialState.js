@@ -7,10 +7,6 @@ const initialPlayerState = {
     xp: 0,
     ap: 3,
     triumphs: 0
-  },
-  img: {
-    type: 'player',
-    imgName: 'male1'
   }
 }
 

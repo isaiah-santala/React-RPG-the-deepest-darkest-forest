@@ -2,12 +2,12 @@ import { rollDice } from '../helpers'
 
 class EnemyState {
   constructor(playerLvl) {
-    this.stats = {
-      lvl: generateEnemyLevel(playerLvl),
-      hp: generateEnemyHp(this.lvl)
-    }
     this.desc = generateEnemyDescription()
     this.loot = generateEnemyLoot()
+    
+    this.stats = {}
+    this.stats.lvl = generateEnemyLevel(playerLvl)
+    this.stats.hp = generateEnemyHp(this.stats.lvl)
   }
 }
 
@@ -47,5 +47,6 @@ const generateEnemyLoot = () => {
   const idx = rollDice(items.length)
   return allItems[items[idx]]
 }
+
 
 export { EnemyState } 
