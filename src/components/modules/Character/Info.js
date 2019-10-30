@@ -11,15 +11,14 @@ const Info = ({ char }) => {
           src={`img/${char.img.type}/${char.img.imgName}`}
         ></img>
         <div className="character-name character-box-item">
-          {char.name}
+          {char.desc.name}
         </div>
       </div>
 
       <div className="character-stats character-box-item">
-        <div>HP: {char.hp}</div>
-        <div>XP: {char.xp}</div>
-        <div>AP: {char.ap}</div>
-        <div>LVL: {char.lvl}</div>
+        {Object.keys(char.stats).map((e, i) =>
+          <div>{e}: {char.stats[e]}</div>
+        )}
       </div>
 
     </div>

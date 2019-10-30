@@ -1,5 +1,4 @@
 // BASE CHARACTER CLASS FOR PLAYER AND ENEMY
-
 class Character {
   constructor(initialState) {
     Object.assign(this, initialState)
@@ -15,24 +14,15 @@ class Character {
           0 : this.hp - amount
     }
   }
-
-  // updateLoot(type, loot) {
-  //   switch(type) {
-  //     case 'ADD' :
-  //       this.loot[loot.type] = loot.item
-  //     case 'REMOVE' :
-        
-  //   }
-  // }
 }
 
 // BASE PLAYER CLASS, CHILD OF CHARACTER CLASS
 import { Loot } from './loot'
 
 class Player extends Character {
-  constructor(initialPlayerState, name) {
-    super(initialPlayerState)
-    this.name = name
+  constructor(state, name, saying) {
+    super(state)
+    this.desc = { name, saying }
     this.loot = new Loot()
   }
 
@@ -42,7 +32,6 @@ class Player extends Character {
 }
 
 // BASE ENEMY CLASS, CHILD OF CHAR CLASS
-
 class Enemy extends Character {
   constructor(state) {
     super(state)
