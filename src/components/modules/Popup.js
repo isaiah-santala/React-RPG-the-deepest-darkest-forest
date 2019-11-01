@@ -15,13 +15,16 @@ const Popup = ({ msg, togglePopup, cb }) => {
       onClick={closePopUp}
     >
       <div className="popup">
+
         <div className="popup-top-row">
-          <button
-          >x</button>
+          <button>x</button>
         </div>
+
         <div className="popup-msg">
-          {msg}
-        </div>
+          <p>{msg}</p>
+          <button>continue</button>
+        </div>  
+
       </div>
     </div>
   )

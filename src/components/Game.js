@@ -18,6 +18,7 @@ class Game extends Component {
     this.describeItem = this.describeItem.bind(this)
     this.updateView = this.updateView.bind(this)
     this.togglePopup = this.togglePopup.bind(this)
+    this.updatePlayer = this.updatePlayer.bind(this)
   }
 
   componentDidMount() {
@@ -47,6 +48,14 @@ class Game extends Component {
     this.setState({ msg, popup, cb })
   }
 
+  updatePlayer(player, cb = null) {
+    this.setState({ 
+      player 
+    }, () => {
+      if (cb) cb()
+    })
+  }
+
   render(props) {
     const { view, player, popup, msg, cb } = this.state
 
@@ -65,6 +74,7 @@ class Game extends Component {
             updateView={this.updateView}
             describeItem={this.describeItem}
             togglePopup={this.togglePopup}
+            updatePlayer={this.updatePlayer}
           />}
         {popup &&
           <Popup

@@ -13,6 +13,7 @@ class CombatView extends Component {
     }
     this.playerAttack = this.playerAttack.bind(this)
     this.enemyAttack = this.enemyAttack.bind(this)
+    this.isPlayerDead = this.isPlayerDead.bind(this)
   }
 
   componentDidMount() {
@@ -26,11 +27,6 @@ class CombatView extends Component {
   }
 
   playerAttack() {
-    if (this.props.popup) {
-      this.props.togglePopup()
-      return this.enemyAttack()
-    }
-
     const { player } = this.props
     const { enemy } = this.state
     const dmg = player.rollAttack()
@@ -46,18 +42,20 @@ class CombatView extends Component {
 
   enemyAttack() {
     const { enemy } = this.state
-    const { player } = this.props
+    const { player, updatePlayer } = this.props
 
     if (enemy.stats.hp <= 0) return this.enemyKilled()
 
     const dmg = enemy.rollAttack()
     player.takeDamage(dmg)
 
-    this.setState({ player }, () =>
-      this.props.togglePopup(
+    updatePlayer(
+      player, 
+      () => {
+        this.props.togglePopup(
         `${enemy.desc.name} deals ${dmg} damage`,
         this.isPlayerDead
-      )
+      )}
     )
   }
 
@@ -66,6 +64,7 @@ class CombatView extends Component {
   }
 
   isPlayerDead() {
+    const { player } = this.props
     if (player.stats.hp <= 0) console.log('game over')
   }
 
