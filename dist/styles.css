@@ -48,7 +48,7 @@ button {
 }
 
 button:hover {
-    background: rgb(204, 159, 92);
+    background: rgb(255, 168, 38);
 }
 
 button:focus {
@@ -57,13 +57,13 @@ button:focus {
 
 .action-button:focus {
   box-shadow: inset 0.05rem 0.05rem 0.05rem black;
-  background: rgb(204, 159, 92);
+  background: rgb(255, 168, 38);
   border-style: inset;
 }
 
 button:active {
     transform: scale(0.99);
-    background: rgb(204, 159, 92);
+    background: rgb(255, 168, 38);
 }
 
 .character-box {

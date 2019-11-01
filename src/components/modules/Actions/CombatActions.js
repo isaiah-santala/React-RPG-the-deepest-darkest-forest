@@ -6,7 +6,7 @@ const CombatActions = (props) => {
     <div className="action-buttons">
       <button 
         className="button action-button"
-        onClick={() => props.handleAction('ATTACK')}
+        onClick={() => props.attack()}
       >Fight</button>
       <button 
         className="button action-button"

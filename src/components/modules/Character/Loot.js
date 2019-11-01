@@ -1,12 +1,8 @@
 import React from 'react'
 
-const Loot = ({ char, handleAction }) => {
+const Loot = ({ char, describeItem }) => {
 
   const { loot } = char
-
-  const describeItem = (msg) => 
-    handleAction('DESCRIBE_ITEM', { msg: msg })
-
 
   return (
     <div className="character-row">

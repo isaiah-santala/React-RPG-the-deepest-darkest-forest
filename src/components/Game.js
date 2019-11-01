@@ -11,10 +11,11 @@ class Game extends Component {
       player: generatePlayer(),
       view: 'COMBAT',
       popup: false,
-      msg: null
+      msg: null,
+      cb: null
     }
     this.attack = this.attack.bind(this)
-    this.handleAction = this.handleAction.bind(this)
+    this.describeItem = this.describeItem.bind(this)
     this.updateView = this.updateView.bind(this)
     this.togglePopup = this.togglePopup.bind(this)
   }
@@ -33,26 +34,21 @@ class Game extends Component {
     this.setState({ view })
   }
 
-  handleAction(type, action) {
-    switch(type) {
-      case 'ATTACK' :
-        return this.attack()
-      case 'DESCRIBE_ITEM' :
-        return this.togglePopup(action.msg)
-    }
+  describeItem(msg) {
+    this.togglePopup(msg)
   }
 
   attack() {
     this.togglePopup('you attack your foe!')
   }
 
-  togglePopup(msg = null) {
+  togglePopup(msg = null, cb = null) {
     const popup = !this.state.popup
-    this.setState({ popup, msg })
+    this.setState({ msg, popup, cb })
   }
 
   render(props) {
-    const { view, player, popup, msg } = this.state
+    const { view, player, popup, msg, cb } = this.state
 
     return (
       <div>
@@ -60,18 +56,21 @@ class Game extends Component {
           <HomeView
             player={player}
             updateView={this.updateView}
-            handleAction={this.handleAction}
+            describeItem={this.describeItem}
           />}
         {view === 'COMBAT' &&
           <CombatView
+            popup={popup}
             player={player}
             updateView={this.updateView}
-            handleAction={this.handleAction}
+            describeItem={this.describeItem}
+            togglePopup={this.togglePopup}
           />}
         {popup &&
           <Popup
             msg={msg}
             togglePopup={this.togglePopup}
+            cb={cb}
           />}
       </div>
     )

@@ -1,21 +1,30 @@
 import React from 'react'
 
-const Popup = ({ msg, togglePopup }) => (
-  <div 
-    className="blackout"
-    onClick={() => togglePopup()}
-  >
-    <div className="popup">
-      <div className="popup-top-row">
-        <button
-          onClick={() => togglePopup()}
-        >x</button>
-      </div>
-      <div className="popup-msg">
-        {msg}
+const Popup = ({ msg, togglePopup, cb }) => {
+
+
+  const closePopUp = () => {
+    togglePopup()
+    if (cb) cb()
+  }
+
+  return (
+    <div 
+      onKeyPress
+      className="blackout"
+      onClick={closePopUp}
+    >
+      <div className="popup">
+        <div className="popup-top-row">
+          <button
+          >x</button>
+        </div>
+        <div className="popup-msg">
+          {msg}
+        </div>
       </div>
     </div>
-  </div>
-)
+  )
+}
 
 export default Popup

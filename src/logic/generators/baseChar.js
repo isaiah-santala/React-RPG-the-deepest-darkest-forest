@@ -4,19 +4,13 @@ class Character {
     Object.assign(this, initialState)
   }
 
-  updateHealth(type, amount) {
-    switch(type) {
-      case 'HEAL' :
-        return this.hp = (this.hp + amount) > this.maxHp ? 
-          this.maxHp : this.hp + amount
-      case 'DAMAGE' :
-        return this.hp = (this.hp - amount) < 0 ?
-          0 : this.hp - amount
-    }
+  takeDamage(dmg) {
+    if (this.stats.hp - dmg <= 0) this.stats.hp = 0
+    else this.stats.hp = this.stats.hp - dmg
   }
 
   maxHit() {
-    return (this.lvl * 2) + 10
+    return (this.stats.lvl * 2) + 10
   }
 
   baseHit() {
@@ -24,7 +18,7 @@ class Character {
   }
 
   maxHp() {
-    return (Math.ceil(this.desc.lvl / 2) * 10) + this.dec.lvl - 1
+    return (Math.ceil(this.stats.lvl / 2) * 10) + this.stats.lvl - 1
   }
 
   rollAttack() {
