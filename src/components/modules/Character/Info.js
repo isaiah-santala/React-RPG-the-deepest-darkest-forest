@@ -17,7 +17,7 @@ const Info = ({ char }) => {
 
       <div className="character-stats character-box-item">
         {Object.keys(char.stats).map((e, i) =>
-          <div>{e}: {char.stats[e]}</div>
+          <div key={i}>{e}: {char.stats[e]}</div>
         )}
       </div>
 

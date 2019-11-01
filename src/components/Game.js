@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Popup from './modules/Popup'
+import GameOver from './GameOver'
 import HomeView from './HomeView'
 import CombatView from './CombatView'
 import { generatePlayer } from '../logic/generators/generators'
@@ -14,10 +15,10 @@ class Game extends Component {
       msg: null,
       cb: null
     }
-    this.attack = this.attack.bind(this)
     this.describeItem = this.describeItem.bind(this)
     this.updateView = this.updateView.bind(this)
-    this.togglePopup = this.togglePopup.bind(this)
+    this.openPopup = this.openPopup.bind(this)
+    this.closePopUp = this.closePopUp.bind(this)
     this.updatePlayer = this.updatePlayer.bind(this)
     this.gameOver = this.gameOver.bind(this)
   }
@@ -37,16 +38,23 @@ class Game extends Component {
   }
 
   describeItem(msg) {
-    this.togglePopup(msg)
+    this.openPopup(msg)
   }
 
-  attack() {
-    this.togglePopup('you attack your foe!')
+  openPopup(msg = null, cb = null) {
+    this.setState({ 
+      cb,
+      msg, 
+      popup: true
+    })
   }
 
-  togglePopup(msg = null, cb = null) {
-    const popup = !this.state.popup
-    this.setState({ msg, popup, cb })
+  closePopUp(cb = null) {
+    this.setState({
+      popup: false
+    }, () => {
+      if (cb) cb()
+    })
   }
 
   updatePlayer(player, cb = null) {
@@ -58,10 +66,9 @@ class Game extends Component {
   }
 
   gameOver() {
-    this.togglePopup(
-      'Game Over, You have perished',
-      () => window.location.reload(true)
-    )
+    this.setState({
+      view: 'GAMEOVER'
+    })
   }
 
   render(props) {
@@ -81,14 +88,17 @@ class Game extends Component {
             player={player}
             updateView={this.updateView}
             describeItem={this.describeItem}
-            togglePopup={this.togglePopup}
+            openPopup={this.openPopup}
             updatePlayer={this.updatePlayer}
             gameOver={this.gameOver}
           />}
+        {view === 'GAMEOVER' &&
+          <GameOver 
+          />} 
         {popup &&
           <Popup
             msg={msg}
-            togglePopup={this.togglePopup}
+            closePopUp={this.closePopUp}
             cb={cb}
           />}
       </div>

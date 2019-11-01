@@ -33,7 +33,7 @@ class CombatView extends Component {
     enemy.takeDamage(dmg)
     
     this.setState({ enemy }, () => 
-      this.props.togglePopup(
+      this.props.openPopup(
         `you deal ${dmg} damage`, 
         this.enemyAttack
       )
@@ -52,7 +52,7 @@ class CombatView extends Component {
     updatePlayer(
       player, 
       () => {
-        this.props.togglePopup(
+        this.props.openPopup(
         `${enemy.desc.name} deals ${dmg} damage`,
         this.isPlayerDead
       )}
@@ -60,7 +60,10 @@ class CombatView extends Component {
   }
 
   enemyKilled() {
-    console.log('you killed your foe!')
+    this.props.openPopup(
+      'You have triumphed',
+      this.props.updateView('HOME')
+    )
   }
 
   isPlayerDead() {

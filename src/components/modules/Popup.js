@@ -1,18 +1,11 @@
 import React from 'react'
 
-const Popup = ({ msg, togglePopup, cb }) => {
-
-
-  const closePopUp = () => {
-    togglePopup()
-    if (cb) cb()
-  }
+const Popup = ({ msg, closePopUp, cb }) => {
 
   return (
     <div 
-      onKeyPress
       className="blackout"
-      onClick={closePopUp}
+      onClick={() => closePopUp(cb)}
     >
       <div className="popup">
 
@@ -22,6 +15,7 @@ const Popup = ({ msg, togglePopup, cb }) => {
 
         <div className="popup-msg">
           <p>{msg}</p>
+
           <button>continue</button>
         </div>  
 

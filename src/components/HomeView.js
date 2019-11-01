@@ -1,12 +1,13 @@
 import React from 'react'
+import PlayerBox from './modules/Character/PlayerBox'
 
-const HomeView = props => {
-  return (
+const HomeView = (props) => (
     <div>
-      <Player
+      <PlayerBox
+        player={props.player}
+        describeItem={props.describeItem}
       />
     </div>
-  )
-}
+)
 
 export default HomeView
