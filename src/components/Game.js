@@ -19,6 +19,7 @@ class Game extends Component {
     this.updateView = this.updateView.bind(this)
     this.togglePopup = this.togglePopup.bind(this)
     this.updatePlayer = this.updatePlayer.bind(this)
+    this.gameOver = this.gameOver.bind(this)
   }
 
   componentDidMount() {
@@ -56,6 +57,13 @@ class Game extends Component {
     })
   }
 
+  gameOver() {
+    this.togglePopup(
+      'Game Over, You have perished',
+      () => window.location.reload(true)
+    )
+  }
+
   render(props) {
     const { view, player, popup, msg, cb } = this.state
 
@@ -75,6 +83,7 @@ class Game extends Component {
             describeItem={this.describeItem}
             togglePopup={this.togglePopup}
             updatePlayer={this.updatePlayer}
+            gameOver={this.gameOver}
           />}
         {popup &&
           <Popup

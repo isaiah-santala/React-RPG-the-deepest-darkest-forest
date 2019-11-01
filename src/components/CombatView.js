@@ -65,7 +65,7 @@ class CombatView extends Component {
 
   isPlayerDead() {
     const { player } = this.props
-    if (player.stats.hp <= 0) console.log('game over')
+    if (player.stats.hp <= 0) this.props.gameOver()
   }
 
   render() {
