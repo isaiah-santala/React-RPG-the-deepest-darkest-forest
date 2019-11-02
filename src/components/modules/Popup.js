@@ -1,10 +1,15 @@
 import React from 'react'
 
 const Popup = ({ msg, closePopUp, cb }) => {
+  let hasRun = false
 
   document.addEventListener(
     'keydown', 
-    () => closePopUp(cb), 
+    () => {
+      if (hasRun) return null
+      closePopUp(cb)
+      hasRun = true
+    }, 
     false
   )
 

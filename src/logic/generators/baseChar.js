@@ -3,7 +3,7 @@ class Character {
   constructor(initialState) {
     Object.assign(this, initialState)
   }
-
+ 
   takeDamage(dmg) {
     if (this.stats.hp - dmg <= 0) this.stats.hp = 0
     else this.stats.hp = this.stats.hp - dmg
