@@ -14,6 +14,8 @@ class CombatView extends Component {
     this.playerAttack = this.playerAttack.bind(this)
     this.enemyAttack = this.enemyAttack.bind(this)
     this.isPlayerDead = this.isPlayerDead.bind(this)
+    this.gainXp = this.gainXp.bind(this)
+    this.gainAp = this.gainAp.bind(this)
   }
 
   componentDidMount() {
@@ -60,14 +62,51 @@ class CombatView extends Component {
   }
 
   enemyKilled() {
+    // give player ap
+    // alert player
+
+    // give player loot
+    // alert player
+
+    //return player to homeview
+
     this.props.openPopup(
       'You have triumphed',
-      this.props.updateView('HOME')
+      this.gainXp
     )
+  }
+
+  gainXp() {
+    const { enemy } = this.state
+    const { player, updatePlayer } = this.props
+
+    const previousLvl = player.stats.lvl
+    player.gainXp(enemy.giveXp())
+
+    const msg = player.stats.lvl > previousLvl ?
+      `Congratulations! you have advanced a combat level` :
+      `You gained ${enemy.giveXp()} XP`
+
+
+    updatePlayer(
+      player,
+      () => {
+        this.props.openPopup(
+          msg,
+          this.gainAp
+        )
+      }
+    ) 
+  }
+
+  gainAp() {
+    console.log('gain AP')
+    this.isPlayerDead()
   }
 
   isPlayerDead() {
     const { player } = this.props
+    console.log(player.stats.hp)
     if (player.stats.hp <= 0) this.props.gameOver()
   }
 
@@ -89,9 +128,10 @@ class CombatView extends Component {
         </div>
 
         <div className="actions">
-          <CombatActions 
-            attack={this.playerAttack}
-          />
+          {!this.props.popup &&
+            <CombatActions 
+              attack={this.playerAttack}
+            />}
         </div>
 
       </div>

@@ -47,7 +47,25 @@ class Player extends Character {
   }
 
   nextLevel() {
-    return this.lvl * 100
+    return this.stats.lvl * 100
+  }
+
+  xpToNextLvl() {
+    return this.nextLevel() - this.stats.xp
+  }
+
+  gainXp(xpFromEnemy) {
+    const { lvl, xp } = this.stats
+
+    const xpToNextLvl = this.xpToNextLvl()
+    const newXp = xp + xpFromEnemy
+
+    if (newXp > xpToNextLvl) {
+      this.stats.xp = newXp - xpToNextLvl
+      this.stats.lvl = lvl + 1
+    }
+
+    else this.stats.xp = newXp
   }
 }
 
@@ -55,6 +73,10 @@ class Player extends Character {
 class Enemy extends Character {
   constructor(state) {
     super(state)
+  }
+
+  giveXp() {
+    return this.stats.lvl * 25
   }
 }
 

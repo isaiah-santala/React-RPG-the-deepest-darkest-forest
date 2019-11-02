@@ -2,6 +2,12 @@ import React from 'react'
 
 const Popup = ({ msg, closePopUp, cb }) => {
 
+  document.addEventListener(
+    'keydown', 
+    () => closePopUp(cb), 
+    false
+  )
+
   return (
     <div 
       className="blackout"
@@ -9,13 +15,8 @@ const Popup = ({ msg, closePopUp, cb }) => {
     >
       <div className="popup">
 
-        <div className="popup-top-row">
-          <button>x</button>
-        </div>
-
         <div className="popup-msg">
           <p>{msg}</p>
-
           <button>continue</button>
         </div>  
 
