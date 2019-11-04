@@ -1,13 +1,12 @@
 
 import React, { Component } from 'react';
-import { generatePlayer } from './logic/generators/generators'
 import Game from './components/Game';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      view: 'GAME',
+      view: 'REDUX',
       player: {
         name: 'Bob Trufant',
         saying: 'I am Bob!',

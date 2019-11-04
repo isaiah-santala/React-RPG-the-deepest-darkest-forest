@@ -24,6 +24,8 @@
     "nodemon": "^1.19.4",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
     "webpack": "^4.41.2"
   },
   "devDependencies": {
