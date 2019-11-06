@@ -4,7 +4,8 @@ import EnemyBox from './modules/Character/EnemyBox'
 import PlayerBox from './modules/Character/PlayerBox'
 import CombatActions from './modules/Actions/CombatActions'
 import { generateNewEnemy } from '../logic/generators/generators'
-import { setEnemy, enemyAddLoot, setEnemyStats } from '../redux/actions'
+import { setEnemy, enemyAddLoot, setEnemyStats, enemyTakeDmg } from '../redux/actions'
+import { rollDice } from '../logic/helpers'
 
 
 class CombatView extends Component {
@@ -25,7 +26,6 @@ class CombatView extends Component {
   generateNewEnemy(playerLvl) {
     const newEnemy = generateNewEnemy(playerLvl)
     const { desc, stats, loot } = newEnemy
-    console.log(stats)
     this.props.setEnemy(desc)
     this.props.enemyAddLoot(loot)
     this.props.setEnemyStats(stats)
@@ -33,15 +33,16 @@ class CombatView extends Component {
 
   playerAttack() {
     const { player, enemy } = this.props
-    const dmg = player.rollAttack()
-    enemy.takeDamage(dmg)
-    
-    this.setState({ enemy }, () => 
-      this.props.openPopup(
-        `you deal ${dmg} damage`, 
-        this.enemyAttack
-      )
-    )
+    const dmg = this.rollAttack(player)
+    console.log(`you dealt ${dmg} damage!`)
+    this.props.enemyTakeDmg(dmg)
+    // enemy.takeDamage(dmg)
+    // this.setState({ enemy }, () => 
+    //   this.props.openPopup(
+    //     `you deal ${dmg} damage`, 
+    //     this.enemyAttack
+    //   )
+    // )
   }
 
   enemyAttack() {
@@ -112,6 +113,23 @@ class CombatView extends Component {
     if (player.stats.hp <= 0) this.props.gameOver()
   }
 
+  maxHit(char) {
+    return (char.stats.lvl * 2) + 10
+  }
+
+  baseHit(char) {
+    return this.maxHit(char) / 2
+  }
+
+  rollAttack(char) {
+    const roll = rollDice(100)
+    if (roll <= 10) return 0
+    if (roll > 10 && roll <= 30) return Math.floor(this.baseHit(char) - (this.baseHit(char) / 2) + rollDice(this.baseHit(char) / 4))
+    if (roll > 30 && roll <= 70) return Math.floor(this.baseHit(char) + (rollDice(this.baseHit(char) / 4)))
+    if (roll > 70 && roll <= 90) return Math.floor(this.baseHit(char) + (this.baseHit(char) / 2) + (rollDice(this.baseHit(char) / 4)))
+    if (roll > 90) return Math.floor(this.maxHit(char) + (rollDice(this.baseHit(char) / 4)))
+  }
+
   render() {
     return (
       <div className="combat-view">
@@ -141,20 +159,57 @@ class CombatView extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  player: {
-    stats: state.playerStats,
-    loot: state.playerLoot,
-    desc: state.playerDesc
-  },
-  enemy: {
-    stats: state.enemyStats,
-    loot: state.enemyLoot,
-    desc: state.enemyDesc
-  }
+const mapStateToProps = ({
+  playerStats,
+  playerLoot,
+  playerDesc,
+  enemyStats,
+  enemyLoot,
+  enemyDesc
+}) => ({
+  playerStats,
+  playerLoot,
+  playerDesc,
+  enemyStats,
+  enemyLoot,
+  enemyDesc
 })
+
+const mergeProps = (
+  { playerStats,
+    playerLoot,
+    playerDesc,
+    enemyStats,
+    enemyLoot,
+    enemyDesc }, 
+  actions,
+  props
+) => {
+  const merged = Object.assign(
+    Object.assign(
+      {}, 
+      props
+    ), actions)
+  merged.player = {
+    stats: playerStats,
+    loot: playerLoot,
+    desc: playerDesc
+  }
+  merged.enemy = {
+    stats: enemyStats,
+    loot: enemyLoot,
+    desc: enemyDesc
+  }
+  return merged
+}
 
 export default connect(
   mapStateToProps,
-  { setEnemy, enemyAddLoot, setEnemyStats }
+  { 
+    setEnemy, 
+    enemyAddLoot, 
+    setEnemyStats,
+    enemyTakeDmg 
+  },
+  mergeProps
 )(CombatView)
