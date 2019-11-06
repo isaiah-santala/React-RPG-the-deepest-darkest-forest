@@ -4,7 +4,7 @@ import EnemyBox from './modules/Character/EnemyBox'
 import PlayerBox from './modules/Character/PlayerBox'
 import CombatActions from './modules/Actions/CombatActions'
 import { generateNewEnemy } from '../logic/generators/generators'
-import { setEnemy, enemyAddLoot, setEnemyStats, enemyTakeDmg } from '../redux/actions'
+import { setEnemy, enemyAddLoot, setEnemyStats, enemyTakeDmg, takeDmg } from '../redux/actions'
 import { rollDice } from '../logic/helpers'
 
 
@@ -15,6 +15,7 @@ class CombatView extends Component {
     this.playerAttack = this.playerAttack.bind(this)
     this.enemyAttack = this.enemyAttack.bind(this)
     this.isPlayerDead = this.isPlayerDead.bind(this)
+    this.isEnemyDead = this.isEnemyDead.bind(this)
     this.gainXp = this.gainXp.bind(this)
     this.gainAp = this.gainAp.bind(this)
   }
@@ -32,51 +33,76 @@ class CombatView extends Component {
   }
 
   playerAttack() {
-    const { player, enemy } = this.props
+    const { player, openPopup, enemyTakeDmg } = this.props
     const [ dmg, crit, miss ] = this.rollAttack(player)
-    this.props.enemyTakeDmg(dmg)
 
-    if (crit) {
-      return this.props.openPopup(
+    enemyTakeDmg(dmg)
+
+    if (crit) return openPopup(
         `critical hit! you deal ${dmg} damage`,
-        this.enemyAttack
-      )
-    }
-
-    if (miss) {
-      return this.props.openPopup(
+        this.isEnemyDead
+    )
+    
+    if (miss) return openPopup(
         `oof you missed... you deal ${dmg} damage`,
-        this.enemyAttack
-      )
-    }
-
-    this.props.openPopup(
+        this.isEnemyDead
+    )
+    
+    return openPopup(
       `you deal ${dmg} damage`, 
-      this.enemyAttack
+      this.isEnemyDead
     )
   }
 
   enemyAttack() {
     console.log('enemy attack')
-    // const { enemy } = this.state
-    // const { player, updatePlayer } = this.props
+    const { enemy, takeDmg, openPopup } = this.props
+    const [dmg, crit, dodge] = this.rollAttack(enemy)
 
-    // if (enemy.stats.hp <= 0) return this.enemyKilled()
+    takeDmg(dmg)
 
-    // const dmg = enemy.rollAttack()
-    // player.takeDamage(dmg)
+    if (crit) return openPopup(
+      `oof that one hurt, ${enemy.desc.name} deals ${dmg} damage`,
+      this.isPlayerDead
+    )
 
-    // updatePlayer(
-    //   player, 
-    //   () => {
-    //     this.props.openPopup(
-    //     `${enemy.desc.name} deals ${dmg} damage`,
-    //     this.isPlayerDead
-    //   )}
-    // )
+    if (dodge) return openPopup(
+      `you evade ${enemy.desc.name}'s attack. you take ${dmg} damage`,
+      this.isPlayerDead
+    )
+
+    return openPopup(
+      `${enemy.desc.name} deals ${dmg} damage`,
+      this.isPlayerDead
+    )
+  }
+  
+  isPlayerDead() {
+    const { hp } = this.props.player.stats
+    if (hp <= 0) this.playerKilled()
+  }
+
+  isEnemyDead() {
+    const { hp } = this.props.enemy.stats
+    return hp <= 0 ?
+      this.enemyKilled() :
+      this.enemyAttack()
+  }
+
+  playerKilled() {
+    this.props.gameOver()
   }
 
   enemyKilled() {
+    this.props.openPopup(
+      'You have triumphed',
+      this.gainXp
+    )
+  }
+
+
+  gainXp() {
+    console.log('gain xp')
     // give player ap
     // alert player
 
@@ -84,45 +110,31 @@ class CombatView extends Component {
     // alert player
 
     //return player to homeview
+    
+    // const { enemy } = this.state
+    // const { player, updatePlayer } = this.props
 
-    this.props.openPopup(
-      'You have triumphed',
-      this.gainXp
-    )
-  }
+    // const previousLvl = player.stats.lvl
+    // player.gainXp(enemy.giveXp())
 
-  gainXp() {
-    const { enemy } = this.state
-    const { player, updatePlayer } = this.props
-
-    const previousLvl = player.stats.lvl
-    player.gainXp(enemy.giveXp())
-
-    const msg = player.stats.lvl > previousLvl ?
-      `Congratulations! you have advanced a combat level` :
-      `You gained ${enemy.giveXp()} XP`
+    // const msg = player.stats.lvl > previousLvl ?
+    //   `Congratulations! you have advanced a combat level` :
+    //   `You gained ${enemy.giveXp()} XP`
 
 
-    updatePlayer(
-      player,
-      () => {
-        this.props.openPopup(
-          msg,
-          this.gainAp
-        )
-      }
-    ) 
+    // updatePlayer(
+    //   player,
+    //   () => {
+    //     this.props.openPopup(
+    //       msg,
+    //       this.gainAp
+    //     )
+    //   }
+    // ) 
   }
 
   gainAp() {
     console.log('gain AP')
-    this.isPlayerDead()
-  }
-
-  isPlayerDead() {
-    const { player } = this.props
-    console.log(player.stats.hp)
-    if (player.stats.hp <= 0) this.props.gameOver()
   }
 
   maxHit(char) {
@@ -221,6 +233,7 @@ export default connect(
     setEnemy, 
     enemyAddLoot, 
     setEnemyStats,
+    takeDmg,
     enemyTakeDmg 
   },
   mergeProps
