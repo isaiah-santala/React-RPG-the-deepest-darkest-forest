@@ -1,15 +1,18 @@
 import { ADD_LOOT } from "../../actionTypes";
 
-const initialState = {
-  
-}
+const initialState = {}
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case ADD_LOOT: {
-      const { dmg } = action.payload;
+      const { loot } = action.payload;
       const updatedState = Object.assign(state)
-      updatedState.hp = state.hp - dmg < 0 ? 0 : state.hp - dmg
+      for (let item in loot) {
+        if (updatedState[item.name]) {
+          updatedState[item.name].qt = updatedState[item.name].qt + item.qt
+        }
+        else updatedState[item.name] = item
+      }
       return updatedState
     }
     default:

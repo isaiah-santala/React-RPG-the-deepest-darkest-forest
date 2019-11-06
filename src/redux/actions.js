@@ -1,4 +1,4 @@
-import { TAKE_DMG, GAIN_XP } from "./actionTypes";
+import { TAKE_DMG, GAIN_XP, SET_PLAYER } from "./actionTypes";
 
 export const takeDmg = dmg => ({
   type: TAKE_DMG,
@@ -14,19 +14,9 @@ export const gainXP = earnedXP => ({
   }
 })
 
-// let nextTodoId = 0;
-
-// export const addTodo = content => ({
-//   type: ADD_TODO,
-//   payload: {
-//     id: ++nextTodoId,
-//     content
-//   }
-// });
-
-// export const toggleTodo = id => ({
-//   type: TOGGLE_TODO,
-//   payload: { id }
-// });
-
-// export const setFilter = filter => ({ type: SET_FILTER, payload: { filter } });
+export const setPlayer = desc => ({
+  type: SET_PLAYER,
+  payload: {
+    desc
+  }
+})

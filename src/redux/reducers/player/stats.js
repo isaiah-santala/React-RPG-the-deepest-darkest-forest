@@ -1,6 +1,6 @@
 import { 
-  AKE_DMG, 
-  XP_TO_NEXT_LVL 
+  TAKE_DMG, 
+  GAIN_XP 
 } from "../../actionTypes"
 
 const initialState = {
@@ -26,18 +26,12 @@ export default function (state = initialState, action) {
       const lvlUp = xpToNextLvl - earnedXp < 0 
       if (lvlUp) {
         updatedState.lvl = state.lvl + 1
-        updatedState.xp = 
+        updatedState.xp = earnedXp - xpToNextLvl
       }
+      else updatedState.xp = state.xp + earnedXp
+      return updatedState
     } 
     default:
       return state
   }
-}
-
-export function nextLevel() {
-  return this.stats.lvl * 100
-}
-
-export function xpToNextLvl() {
-  return this.nextLevel() - this.stats.xp
 }

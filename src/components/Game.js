@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux";
+
 import Popup from './modules/Popup'
 import GameOver from './GameOver'
 import HomeView from './HomeView'
@@ -9,7 +11,6 @@ class Game extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      player: generatePlayer(),
       view: 'COMBAT',
       popup: false,
       msg: null,
@@ -24,7 +25,6 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    this.generatePlayer(this.props.player)
   }
 
   generatePlayer(player) {
@@ -72,7 +72,9 @@ class Game extends Component {
   }
 
   render(props) {
-    const { view, player, popup, msg, cb } = this.state
+    const { player } = this.props
+    console.log(player)
+    const { view, popup, msg, cb } = this.state
 
     return (
       <div>
@@ -106,4 +108,14 @@ class Game extends Component {
   }
 }
 
-export default Game
+const mapStateToProps = state => ({ 
+  player: {
+    stats: state.playerStats,
+    loot: state.playerLoot,
+    desc: state.playerDesc
+  }
+})
+
+export default connect(
+  mapStateToProps
+)(Game)

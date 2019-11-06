@@ -1,5 +1,10 @@
 import { combineReducers } from "redux"
-import loot from './player/loot'
-import stats from './player/stats'
+import playerLoot from './player/loot'
+import playerStats from './player/stats'
+import playerDesc from './player/desc'
 
-export default combineReducers({ loot, stats })
+export default combineReducers({ 
+  playerLoot, 
+  playerStats, 
+  playerDesc 
+})
