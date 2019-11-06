@@ -34,9 +34,7 @@ class App extends Component {
     return (
       <div>
         {view === 'LOGIN' &&
-          <Login
-            updateView={this.updateView}
-          />}
+          <Login/>}
         {view === 'GAME' && 
           <Game/>}
       </div>

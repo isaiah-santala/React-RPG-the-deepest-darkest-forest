@@ -45,7 +45,10 @@ import { allItems } from '../items/all'
 const generateEnemyLoot = () => {
   const items = Object.keys(allItems)
   const idx = rollDice(items.length)
-  return allItems[items[idx]]
+  const item = allItems[items[idx]]
+  return {
+    [item.name]: item
+  }
 }
 
 

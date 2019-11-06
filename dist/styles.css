@@ -113,7 +113,6 @@ button:active {
 .character-loot {
   width: 13rem;
   height: 6rem;
-  overflow: scroll;
 }
 
 .character-saying {

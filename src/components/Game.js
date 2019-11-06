@@ -5,7 +5,6 @@ import Popup from './modules/Popup'
 import GameOver from './GameOver'
 import HomeView from './HomeView'
 import CombatView from './CombatView'
-import { generatePlayer } from '../logic/generators/generators'
 
 class Game extends Component {
   constructor(props) {
@@ -22,15 +21,6 @@ class Game extends Component {
     this.closePopUp = this.closePopUp.bind(this)
     this.updatePlayer = this.updatePlayer.bind(this)
     this.gameOver = this.gameOver.bind(this)
-  }
-
-  componentDidMount() {
-  }
-
-  generatePlayer(player) {
-    this.setState({
-      player: generatePlayer(player)
-    })
   }
 
   updateView(view) {
@@ -73,7 +63,6 @@ class Game extends Component {
 
   render(props) {
     const { player } = this.props
-    console.log(player)
     const { view, popup, msg, cb } = this.state
 
     return (
@@ -87,7 +76,6 @@ class Game extends Component {
         {view === 'COMBAT' &&
           <CombatView
             popup={popup}
-            player={player}
             updateView={this.updateView}
             describeItem={this.describeItem}
             openPopup={this.openPopup}
@@ -95,8 +83,7 @@ class Game extends Component {
             gameOver={this.gameOver}
           />}
         {view === 'GAMEOVER' &&
-          <GameOver 
-          />} 
+          <GameOver/>} 
         {popup &&
           <Popup
             msg={msg}

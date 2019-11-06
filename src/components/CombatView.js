@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import EnemyBox from './modules/Character/EnemyBox'
 import PlayerBox from './modules/Character/PlayerBox'
 import CombatActions from './modules/Actions/CombatActions'
 import { generateNewEnemy } from '../logic/generators/generators'
+import { setEnemy, enemyAddLoot, setEnemyStats } from '../redux/actions'
 
 
 class CombatView extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      enemy: generateNewEnemy(null)
-    }
+    this.state = {}
     this.playerAttack = this.playerAttack.bind(this)
     this.enemyAttack = this.enemyAttack.bind(this)
     this.isPlayerDead = this.isPlayerDead.bind(this)
@@ -23,14 +23,16 @@ class CombatView extends Component {
   }
 
   generateNewEnemy(playerLvl) {
-    this.setState({
-      enemy: generateNewEnemy(playerLvl)
-    })
+    const newEnemy = generateNewEnemy(playerLvl)
+    const { desc, stats, loot } = newEnemy
+    console.log(stats)
+    this.props.setEnemy(desc)
+    this.props.enemyAddLoot(loot)
+    this.props.setEnemyStats(stats)
   }
 
   playerAttack() {
-    const { player } = this.props
-    const { enemy } = this.state
+    const { player, enemy } = this.props
     const dmg = player.rollAttack()
     enemy.takeDamage(dmg)
     
@@ -123,7 +125,7 @@ class CombatView extends Component {
             className="vs"
           >VS</div>
           <EnemyBox 
-            enemy={this.state.enemy}
+            enemy={this.props.enemy}
           />
         </div>
 
@@ -139,4 +141,20 @@ class CombatView extends Component {
   }
 }
 
-export default CombatView
+const mapStateToProps = state => ({
+  player: {
+    stats: state.playerStats,
+    loot: state.playerLoot,
+    desc: state.playerDesc
+  },
+  enemy: {
+    stats: state.enemyStats,
+    loot: state.enemyLoot,
+    desc: state.enemyDesc
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  { setEnemy, enemyAddLoot, setEnemyStats }
+)(CombatView)
