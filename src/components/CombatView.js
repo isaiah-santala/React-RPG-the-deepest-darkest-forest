@@ -33,35 +33,47 @@ class CombatView extends Component {
 
   playerAttack() {
     const { player, enemy } = this.props
-    const dmg = this.rollAttack(player)
-    console.log(`you dealt ${dmg} damage!`)
+    const [ dmg, crit, miss ] = this.rollAttack(player)
     this.props.enemyTakeDmg(dmg)
-    // enemy.takeDamage(dmg)
-    // this.setState({ enemy }, () => 
-    //   this.props.openPopup(
-    //     `you deal ${dmg} damage`, 
-    //     this.enemyAttack
-    //   )
-    // )
+
+    if (crit) {
+      return this.props.openPopup(
+        `critical hit! you deal ${dmg} damage`,
+        this.enemyAttack
+      )
+    }
+
+    if (miss) {
+      return this.props.openPopup(
+        `oof you missed... you deal ${dmg} damage`,
+        this.enemyAttack
+      )
+    }
+
+    this.props.openPopup(
+      `you deal ${dmg} damage`, 
+      this.enemyAttack
+    )
   }
 
   enemyAttack() {
-    const { enemy } = this.state
-    const { player, updatePlayer } = this.props
+    console.log('enemy attack')
+    // const { enemy } = this.state
+    // const { player, updatePlayer } = this.props
 
-    if (enemy.stats.hp <= 0) return this.enemyKilled()
+    // if (enemy.stats.hp <= 0) return this.enemyKilled()
 
-    const dmg = enemy.rollAttack()
-    player.takeDamage(dmg)
+    // const dmg = enemy.rollAttack()
+    // player.takeDamage(dmg)
 
-    updatePlayer(
-      player, 
-      () => {
-        this.props.openPopup(
-        `${enemy.desc.name} deals ${dmg} damage`,
-        this.isPlayerDead
-      )}
-    )
+    // updatePlayer(
+    //   player, 
+    //   () => {
+    //     this.props.openPopup(
+    //     `${enemy.desc.name} deals ${dmg} damage`,
+    //     this.isPlayerDead
+    //   )}
+    // )
   }
 
   enemyKilled() {
@@ -123,11 +135,11 @@ class CombatView extends Component {
 
   rollAttack(char) {
     const roll = rollDice(100)
-    if (roll <= 10) return 0
-    if (roll > 10 && roll <= 30) return Math.floor(this.baseHit(char) - (this.baseHit(char) / 2) + rollDice(this.baseHit(char) / 4))
-    if (roll > 30 && roll <= 70) return Math.floor(this.baseHit(char) + (rollDice(this.baseHit(char) / 4)))
-    if (roll > 70 && roll <= 90) return Math.floor(this.baseHit(char) + (this.baseHit(char) / 2) + (rollDice(this.baseHit(char) / 4)))
-    if (roll > 90) return Math.floor(this.maxHit(char) + (rollDice(this.baseHit(char) / 4)))
+    if (roll <= 10) return [ 0, null, true ]
+    if (roll > 10 && roll <= 30) return [ Math.floor(this.baseHit(char) - (this.baseHit(char) / 2) + rollDice(this.baseHit(char) / 4)), null, null ]
+    if (roll > 30 && roll <= 70) return [ Math.floor(this.baseHit(char) + (rollDice(this.baseHit(char) / 4))), null, null ]
+    if (roll > 70 && roll <= 90) return [ Math.floor(this.baseHit(char) + (this.baseHit(char) / 2) + (rollDice(this.baseHit(char) / 4))), null, null ]
+    if (roll > 90) return  [ Math.floor(this.maxHit(char) + (rollDice(this.baseHit(char) / 4))), true, null ]
   }
 
   render() {
