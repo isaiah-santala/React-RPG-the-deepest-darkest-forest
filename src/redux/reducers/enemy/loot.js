@@ -11,7 +11,7 @@ export default function (state = initialState, action) {
         if (updatedState[item]) {
           updatedState[item].qt = updatedState[item].qt + item.qt
         }
-        else updatedState[item] = item
+        else updatedState[item] = loot[item]
       }
       return updatedState
     }

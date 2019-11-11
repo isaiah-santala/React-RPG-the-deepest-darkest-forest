@@ -9,10 +9,10 @@ export default function (state = initialState, action) {
       const updatedState = Object.assign({}, state)
       console.log(loot)
       for (let item in loot) {
-        if (updatedState[item.name]) {
-          updatedState[item.name].qt = updatedState[item.name].qt + item.qt
+        if (updatedState[item]) {
+          updatedState[item].qt = updatedState[item].qt + loot[item].qt
         }
-        else updatedState[item.name] = item
+        else updatedState[item] = loot[item]
       }
       console.log(updatedState)
       return updatedState
