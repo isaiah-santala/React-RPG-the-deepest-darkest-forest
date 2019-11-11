@@ -10,7 +10,9 @@ import { rollDice } from '../logic/helpers'
 class CombatView extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      oldStats: this.props.player.stats
+    }
     this.playerAttack = this.playerAttack.bind(this)
     this.enemyAttack = this.enemyAttack.bind(this)
     this.isPlayerDead = this.isPlayerDead.bind(this)
@@ -18,10 +20,16 @@ class CombatView extends Component {
     this.gainXp = this.gainXp.bind(this)
     this.gainAp = this.gainAp.bind(this)
     this.gainLoot = this.gainLoot.bind(this)
+    this.didPlayerLvlUp = this.didPlayerLvlUp.bind(this)
   }
 
   componentDidMount() {
-    this.generateNewEnemy(this.props.player.stats.lvl)
+    const { lvl } = this.props.player.stats
+    this.generateNewEnemy(lvl)
+  }
+
+  componentDidUpdate() {
+    this.didPlayerLvlUp()
   }
 
   generateNewEnemy(playerLvl) {
@@ -30,6 +38,19 @@ class CombatView extends Component {
     this.props.setEnemy(desc)
     this.props.enemyAddLoot(loot)
     this.props.setEnemyStats(stats)
+  }
+
+  didPlayerLvlUp() {
+    const { player, openPopup } = this.props
+    const { oldStats } = this.state
+
+    this.setState({
+      oldStats: player.stats
+    })
+
+    if (player.stats.lvl > oldStats.lvl) openPopup(
+      'Congratulations!!! you have advanced a combat level.'
+    )
   }
 
   playerAttack() {
@@ -99,7 +120,6 @@ class CombatView extends Component {
       this.gainXp
     )
   }
-
 
   gainXp() {
     const { gainXp, enemy, openPopup } = this.props 
