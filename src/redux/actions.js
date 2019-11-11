@@ -23,10 +23,10 @@ export const enemyTakeDmg = dmg => ({
   }
 })
 
-export const gainXP = earnedXP => ({
+export const gainXp = earnedXp => ({
   type: GAIN_XP,
   payload: {
-    earnedXP
+    earnedXp
   }
 })
 

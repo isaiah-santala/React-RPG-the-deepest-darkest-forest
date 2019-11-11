@@ -4,7 +4,6 @@ import EnemyBox from './modules/Character/EnemyBox'
 import PlayerBox from './modules/Character/PlayerBox'
 import CombatActions from './modules/Actions/CombatActions'
 import { generateNewEnemy } from '../logic/generators/generators'
-import { setEnemy, enemyAddLoot, setEnemyStats, enemyTakeDmg, takeDmg } from '../redux/actions'
 import { rollDice } from '../logic/helpers'
 
 
@@ -102,7 +101,13 @@ class CombatView extends Component {
 
 
   gainXp() {
-    console.log('gain xp')
+    const { gainXp, enemy, player } = this.props 
+    const gainedXp = enemy.stats.lvl * 50
+    gainXp(gainedXp)
+    
+    console.log(player.stats)
+
+
     // give player ap
     // alert player
 
@@ -200,12 +205,14 @@ const mapStateToProps = ({
 })
 
 const mergeProps = (
-  { playerStats,
+  { 
+    playerStats,
     playerLoot,
     playerDesc,
     enemyStats,
     enemyLoot,
-    enemyDesc }, 
+    enemyDesc, 
+  }, 
   actions,
   props
 ) => {
@@ -227,6 +234,15 @@ const mergeProps = (
   return merged
 }
 
+import {
+  setEnemy,
+  enemyAddLoot,
+  setEnemyStats,
+  enemyTakeDmg,
+  takeDmg,
+  gainXp
+} from '../redux/actions'
+
 export default connect(
   mapStateToProps,
   { 
@@ -234,7 +250,8 @@ export default connect(
     enemyAddLoot, 
     setEnemyStats,
     takeDmg,
-    enemyTakeDmg 
+    enemyTakeDmg,
+    gainXp
   },
   mergeProps
 )(CombatView)
