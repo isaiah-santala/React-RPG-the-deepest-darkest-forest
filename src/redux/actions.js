@@ -6,7 +6,9 @@ import {
   SET_ENEMY,
   ADD_LOOT, 
   ENEMY_ADD_LOOT,
-  SET_ENEMY_STATS
+  SET_ENEMY_STATS,
+  GAIN_AP,
+  GAIN_LOOT
 } from "./actionTypes";
 
 export const takeDmg = dmg => ({
@@ -27,6 +29,13 @@ export const gainXp = earnedXp => ({
   type: GAIN_XP,
   payload: {
     earnedXp
+  }
+})
+
+export const gainAp = earnedAp => ({
+  type: GAIN_AP,
+  payload: {
+    earnedAp
   }
 })
 

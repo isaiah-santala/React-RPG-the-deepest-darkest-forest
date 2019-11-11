@@ -17,6 +17,7 @@ class CombatView extends Component {
     this.isEnemyDead = this.isEnemyDead.bind(this)
     this.gainXp = this.gainXp.bind(this)
     this.gainAp = this.gainAp.bind(this)
+    this.gainLoot = this.gainLoot.bind(this)
   }
 
   componentDidMount() {
@@ -101,45 +102,31 @@ class CombatView extends Component {
 
 
   gainXp() {
-    const { gainXp, enemy, player } = this.props 
+    const { gainXp, enemy, openPopup } = this.props 
     const gainedXp = enemy.stats.lvl * 50
     gainXp(gainedXp)
-    
-    console.log(player.stats)
 
-
-    // give player ap
-    // alert player
-
-    // give player loot
-    // alert player
-
-    //return player to homeview
-    
-    // const { enemy } = this.state
-    // const { player, updatePlayer } = this.props
-
-    // const previousLvl = player.stats.lvl
-    // player.gainXp(enemy.giveXp())
-
-    // const msg = player.stats.lvl > previousLvl ?
-    //   `Congratulations! you have advanced a combat level` :
-    //   `You gained ${enemy.giveXp()} XP`
-
-
-    // updatePlayer(
-    //   player,
-    //   () => {
-    //     this.props.openPopup(
-    //       msg,
-    //       this.gainAp
-    //     )
-    //   }
-    // ) 
+    openPopup(
+      `you gained ${gainedXp} XP`,
+      this.gainAp
+    )
   }
 
   gainAp() {
-    console.log('gain AP')
+    const { gainAp, enemy, openPopup } = this.props
+    const gainedAp = enemy.stats.lvl + 3
+    gainAp(gainedAp)
+
+    openPopup(
+      `you gained ${gainedAp} AP`,
+      this.gainLoot
+    )
+  }
+
+  gainLoot() {
+    const { addLoot, enemy, openPopup } = this.props
+    const gainedLoot = enemy.loot
+    addLoot(gainedLoot)
   }
 
   maxHit(char) {
@@ -240,7 +227,9 @@ import {
   setEnemyStats,
   enemyTakeDmg,
   takeDmg,
-  gainXp
+  gainXp,
+  gainAp,
+  addLoot
 } from '../redux/actions'
 
 export default connect(
@@ -251,7 +240,9 @@ export default connect(
     setEnemyStats,
     takeDmg,
     enemyTakeDmg,
-    gainXp
+    gainXp,
+    gainAp,
+    addLoot
   },
   mergeProps
 )(CombatView)

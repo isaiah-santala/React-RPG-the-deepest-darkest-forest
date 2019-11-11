@@ -1,6 +1,7 @@
 import { 
   TAKE_DMG, 
-  GAIN_XP 
+  GAIN_XP,
+  GAIN_AP
 } from "../../actionTypes"
 
 const initialState = {
@@ -36,6 +37,14 @@ export default function (state = initialState, action) {
       
       return updatedState
     } 
+    case GAIN_AP: {
+      const updatedState = Object.assign({}, state)
+      const { earnedAp } = action.payload
+
+      updatedState.ap = state.ap + earnedAp
+      
+      return updatedState
+    }
     default:
       return state
   }
