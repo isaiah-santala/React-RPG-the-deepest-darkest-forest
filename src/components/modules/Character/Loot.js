@@ -1,7 +1,6 @@
 import React from 'react'
 
-const Loot = ({ char, describeItem }) => {
-
+const Loot = ({ char, describeItem, popup }) => {
   const { loot } = char
 
   return (
@@ -9,7 +8,7 @@ const Loot = ({ char, describeItem }) => {
 
       <div className="character-loot character-box-item">
 
-        {Object.keys(loot).map((e, i) =>
+        {!popup && Object.keys(loot).map((e, i) =>
           <button
             key={i}
             className="button loot-item"

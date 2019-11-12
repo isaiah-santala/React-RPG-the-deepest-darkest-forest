@@ -1,7 +1,7 @@
-
 import React, { Component } from 'react';
-import Game from './components/Game';
 import { connect } from "react-redux";
+
+import Game from './components/Game';
 import { setPlayer } from './redux/actions'
 
 class App extends Component {

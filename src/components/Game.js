@@ -69,6 +69,7 @@ class Game extends Component {
       <div>
         {view === 'HOME' &&
           <HomeView
+            popup={popup}
             player={player}
             updateView={this.updateView}
             describeItem={this.describeItem}

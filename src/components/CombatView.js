@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+
 import EnemyBox from './modules/Character/EnemyBox'
 import PlayerBox from './modules/Character/PlayerBox'
 import CombatActions from './modules/Actions/CombatActions'
 import { generateNewEnemy } from '../logic/generators/generators'
 import { rollDice } from '../logic/helpers'
-
 
 class CombatView extends Component {
   constructor(props) {
@@ -197,6 +197,7 @@ class CombatView extends Component {
 
         <div className="row">
           <PlayerBox 
+            popup={this.props.popup}
             player={this.props.player}
             describeItem={this.props.describeItem}
           />
