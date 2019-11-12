@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 
-import Popup from './modules/Popup'
+import Popup from './modules/PopUp/Popup'
 import GameOver from './GameOver'
 import HomeView from './HomeView'
 import CombatView from './CombatView'
@@ -43,7 +43,12 @@ class Game extends Component {
     this.setState({
       popup: false
     }, () => {
+
       if (cb) cb()
+
+      this.setState({
+        cb: null
+      })
     })
   }
 
@@ -63,7 +68,7 @@ class Game extends Component {
 
   render(props) {
     const { player } = this.props
-    const { view, popup, msg, cb } = this.state
+    const { view, popup, msg, cb, useItem } = this.state
 
     return (
       <div>
@@ -95,6 +100,8 @@ class Game extends Component {
     )
   }
 }
+
+
 
 const mapStateToProps = state => ({ 
   player: {
