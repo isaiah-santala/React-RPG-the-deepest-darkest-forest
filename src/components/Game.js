@@ -45,10 +45,6 @@ class Game extends Component {
     }, () => {
 
       if (cb) cb()
-
-      this.setState({
-        cb: null
-      })
     })
   }
 

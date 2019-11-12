@@ -1,51 +1,36 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Message } from './Message'
 
-class Popup extends Component {
-  constructor(props) {
-    super(props)
-    this.closePopUp = this.closePopUp.bind(this)
-  }
+const Popup = ({ msg, closePopUp, cb, type = 'MSG' }) => {
 
-  closePopUp() {
-    const { closePopUp, cb } = this.props
+  const handleClose = () => {
     closePopUp(cb)
-  }
-
-  componentDidMount() {
-    document.addEventListener(
-      'keydown', 
-      this.closePopUp
-    )
-  }
-
-  componentWillUnmount() {
     document.removeEventListener(
-      'keydown', 
-      this.props.closePopUp(
-        this.closePopUp
-      )
+      'keydown',
+      handleClose,
+      false
     )
   }
 
-  render() {
-    const { msg, type = 'MSG' } = this.props
+  document.addEventListener(
+    'keydown', 
+    handleClose, 
+    false
+  )
 
-    return (
-      <div 
-        className="blackout"
-        onClick={this.closePopUp}
-      >
-  
-        {type === 'MSG' && 
-          <Message
-            msg={msg}
-          />}
-  
-      </div>
-    )
-  }
+  return (
+    <div 
+      className="blackout"
+      onClick={() => handleClose()}
+    >
+
+      {type === 'MSG' && 
+        <Message
+          msg={msg}
+        />}
+
+    </div>
+  )
 }
-
 
 export default Popup
