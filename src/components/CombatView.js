@@ -21,6 +21,7 @@ class CombatView extends Component {
     this.gainAp = this.gainAp.bind(this)
     this.gainLoot = this.gainLoot.bind(this)
     this.didPlayerLvlUp = this.didPlayerLvlUp.bind(this)
+    this.playerLvldUp = this.playerLvldUp.bind(this)
   }
 
   componentDidMount() {
@@ -41,16 +42,22 @@ class CombatView extends Component {
   }
 
   didPlayerLvlUp() {
-    const { player, openPopup } = this.props
+    const { player } = this.props
     const { oldStats } = this.state
+
+    if (player.stats.lvl > oldStats.lvl) {
+      this.playerLvldUp()
+    }
+  }
+
+  playerLvldUp() {
+    const { player, openPopup } = this.props
 
     this.setState({
       oldStats: player.stats
-    })
-
-    if (player.stats.lvl > oldStats.lvl) openPopup(
+    }, () => openPopup(
       'Congratulations!!! you have advanced a combat level.'
-    )
+    ))
   }
 
   playerAttack() {
@@ -76,7 +83,6 @@ class CombatView extends Component {
   }
 
   enemyAttack() {
-    console.log('enemy attack')
     const { enemy, takeDmg, openPopup } = this.props
     const [dmg, crit, dodge] = this.rollAttack(enemy)
 

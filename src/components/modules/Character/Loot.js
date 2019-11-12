@@ -16,7 +16,7 @@ const Loot = ({ char, describeItem }) => {
             onClick={() => describeItem(
               loot[e].description
             )}
-          >{loot[e].name}</button>
+            >{loot[e].name}{`(${loot[e].qt})`}</button>
         )}
 
       </div>
