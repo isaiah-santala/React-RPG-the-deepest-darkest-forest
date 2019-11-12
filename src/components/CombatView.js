@@ -11,6 +11,7 @@ class CombatView extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      lvlUp: false,
       oldStats: this.props.player.stats
     }
     this.playerAttack = this.playerAttack.bind(this)
@@ -22,6 +23,7 @@ class CombatView extends Component {
     this.gainLoot = this.gainLoot.bind(this)
     this.didPlayerLvlUp = this.didPlayerLvlUp.bind(this)
     this.playerLvldUp = this.playerLvldUp.bind(this)
+    this.sendPlayerHome = this.sendPlayerHome.bind(this)
   }
 
   componentDidMount() {
@@ -54,10 +56,9 @@ class CombatView extends Component {
     const { player, openPopup } = this.props
 
     this.setState({
-      oldStats: player.stats
-    }, () => openPopup(
-      'Congratulations!!! you have advanced a combat level.'
-    ))
+      oldStats: player.stats,
+      lvlUp: true
+    })
   }
 
   playerAttack() {
@@ -153,6 +154,24 @@ class CombatView extends Component {
     const { addLoot, enemy, openPopup } = this.props
     const gainedLoot = enemy.loot
     addLoot(gainedLoot)
+
+    const item = gainedLoot[Object.keys(gainedLoot)[0]]
+
+    openPopup(
+      `you gained ${item.name}(${item.qt})`,
+      this.sendPlayerHome
+    )
+  }
+
+  sendPlayerHome() {
+    const { openPopup } = this.props
+
+    if (this.state.lvlUp) openPopup(
+      `Congratulations!!! You have advanced a combat level.`,
+      () => {this.props.updateView('HOME')}
+    )
+
+    else this.props.updateView('HOME')
   }
 
   maxHit(char) {
